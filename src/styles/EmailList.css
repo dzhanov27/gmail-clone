@@ -1,0 +1,88 @@
+.emailList {
+  width: 100%;
+}
+
+.emailList__settings {
+  border-bottom: 1px solid whitesmoke;
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+}
+
+.emailList__mailsBox {
+  flex: 1;
+  overflow-y: scroll;
+  height: calc(100% - 58px);
+}
+
+.emailList__sections {
+  display: flex;
+}
+
+.section {
+  color: #555;
+  display: flex;
+  align-items: center;
+  font-size: small;
+  min-width: 200px;
+  border-bottom: 1px solid whitesmoke;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.section:hover {
+  background-color: whitesmoke;
+  color: black;
+}
+
+.section > p {
+  margin-left: 16px;
+}
+
+.emailRow {
+  display: flex;
+  border-bottom: 1px solid whitesmoke;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.emailRow:hover {
+  box-shadow: 1px 1px 4px #999;
+  /* background-color: whitesmoke; */
+}
+
+.emailRow > div {
+  display: flex;
+  align-items: center;
+}
+
+.emailRow__sender {
+  padding-left: 8px;
+  width: 180px;
+}
+
+/* .emailRow__message {
+  flex: 0.7;
+} */
+
+.emailRow__message > h3 {
+  line-height: 14px;
+  font-size: 14px;
+  margin-right: 8px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  padding-right: 8px;
+  width: 500px;
+}
+
+.emailRow__message > h3 > span {
+  margin-left: 8px;
+  font-weight: 400;
+}
+
+.emailRow__date {
+  width: 50px;
+  margin-left: auto;
+  margin-right: 16px;
+}

@@ -1,22 +1,28 @@
-import React from 'react'
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import React from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
-import { Navbar } from './components/Navbar'
-import { About } from './pages/About'
-import { Home } from './pages/Home'
+import EmailList from './components/EmailList';
+import Header from './components/Header';
+import Mail from './components/Mail';
+import Sidebar from './components/Sidebar';
+
+import './styles/App.css';
 
 const App: React.FC = () => {
   return (
-    <BrowserRouter>
-      <Navbar />
-      <div className="container">
-        <Switch>
-          <Route path="/" component={Home} exact />
-          <Route path="/about" component={About} />
-        </Switch>
+    <Router>
+      <div className="app">
+        <Header />
+        <div className="app__body">
+          <Sidebar />
+          <Switch>
+            <Route path="/" exact component={EmailList} />
+            <Route path="/mail" component={Mail} />
+          </Switch>
+        </div>
       </div>
-    </BrowserRouter>
-  )
-}
+    </Router>
+  );
+};
 
-export default App
+export default App;

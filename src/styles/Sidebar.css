@@ -1,0 +1,63 @@
+.sidebar {
+  padding: 16px 8px 0px 0px;
+}
+
+.newEmailBtn {
+  cursor: pointer;
+  background-color: transparent;
+  border-radius: 50px;
+  display: flex;
+  align-items: center;
+  padding: 8px 16px;
+  border: none;
+  outline-width: 0;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  color: #555;
+  margin: 0 0 16px 8px;
+}
+
+.newEmailBtn > img {
+  margin-right: 12px;
+}
+
+.newEmailBtn:hover {
+  background-color: whitesmoke;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.45);
+}
+
+.sidebarOption {
+  display: flex;
+  align-items: center;
+  width: 210px;
+  height: 35px;
+  padding: 0 0 0 24px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  cursor: pointer;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.sidebarOption > p {
+  margin: 0 0 0 10px;
+  flex: 1;
+}
+
+.sidebarOption > span {
+  font-size: 0.85rem;
+  margin-left: auto;
+}
+
+.sidebarOption:hover {
+  background-color: whitesmoke;
+}
+
+.sidebar--active {
+  color: #c04b37;
+  background-color: #fcecec;
+  font-weight: 500;
+}
+
+.sidebar--active:hover {
+  background-color: #fcecec;
+}
