@@ -19,6 +19,17 @@
   display: flex;
 }
 
+.emailList__sections > button {
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+}
+
+.emailList__sections > button:focus {
+  outline: none;
+}
+
 .section {
   color: #555;
   display: flex;
@@ -41,6 +52,7 @@
 
 .emailRow {
   display: flex;
+  align-items: center;
   border-bottom: 1px solid whitesmoke;
   font-size: 14px;
   cursor: pointer;
@@ -52,14 +64,31 @@
   /* background-color: whitesmoke; */
 }
 
+.clickButton {
+  border: none;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 100%;
+}
+
+.clickButton:focus {
+  outline: none;
+}
+
 .emailRow > div {
   display: flex;
   align-items: center;
 }
 
 .emailRow__sender {
+  display: flex;
   width: 180px;
   padding-left: 8px;
+  font-size: 14px;
 }
 
 .emailRow__message > h3 {

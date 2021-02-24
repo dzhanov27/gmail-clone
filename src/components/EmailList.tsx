@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Checkbox, IconButton } from '@material-ui/core';
 
 // icons
@@ -11,31 +12,29 @@ import InboxIcon from '@material-ui/icons/Inbox';
 import PeopleIcon from '@material-ui/icons/People';
 import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 
-// import { Link } from 'react-router-dom';
+// components
 import Section from './Section';
 import EmailRow from './EmailRow';
 
+// redux
+import { loadMailsAsync, selectMails } from '../features/mailsSlice';
+import {
+  openPromo,
+  openSocial,
+  openUnsorted,
+  selectSectionType,
+} from '../features/sectionSlice';
+
+// styles
 import '../styles/EmailList.css';
 
 const EmailList: React.FC = () => {
-  interface Mails {
-    id: string;
-    sender: string;
-    subject: string;
-    descriptio: string;
-    date: string;
-    __v: number;
-  }
-  const [data, setData] = useState<Mails[]>([]);
-
-  async function fetchData() {
-    const response = await fetch('http://localhost:5000/mails');
-    const ddata = await response.json();
-    setData(ddata);
-  }
+  const mails = useSelector(selectMails);
+  const section = useSelector(selectSectionType);
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    fetchData();
+    dispatch(loadMailsAsync());
   }, []);
 
   return (
@@ -46,7 +45,7 @@ const EmailList: React.FC = () => {
           <IconButton size="small">
             <ExpandMoreIcon />
           </IconButton>
-          <IconButton>
+          <IconButton onClick={() => dispatch(loadMailsAsync())}>
             <RefreshIcon />
           </IconButton>
           <IconButton>
@@ -64,34 +63,43 @@ const EmailList: React.FC = () => {
       </div>
       <div className="emailList__mailsBox">
         <div className="emailList__sections">
-          <Section
-            Icon={InboxIcon}
-            title="Несортированные"
-            color="red"
-            selected
-          />
-          <Section
-            Icon={PeopleIcon}
-            title="Соцсети"
-            color="blue"
-            selected={false}
-          />
-          <Section
-            Icon={LocalOfferIcon}
-            title="Промоакции"
-            color="green"
-            selected={false}
-          />
+          <button type="button" onClick={() => dispatch(openUnsorted())}>
+            <Section
+              Icon={InboxIcon}
+              title="Несортированные"
+              color="red"
+              selected={section.red}
+            />
+          </button>
+          <button type="button" onClick={() => dispatch(openSocial())}>
+            <Section
+              Icon={PeopleIcon}
+              title="Соцсети"
+              color="blue"
+              selected={section.blue}
+            />
+          </button>
+          <button type="button" onClick={() => dispatch(openPromo())}>
+            <Section
+              Icon={LocalOfferIcon}
+              title="Промоакции"
+              color="green"
+              selected={section.green}
+            />
+          </button>
         </div>
         <div className="emailList__mails">
-          <EmailRow
-            id="1"
-            sender="Google"
-            subject="Welcome to Gmail"
-            description="Смените раскрытые пароли раскрытые пароли раскрытые пароли раскрытые пароли раскрытые пароли раскрытые пароли раскрытые пароли раскрытые пароли раскрытые пароли раскрытые пароли"
-            date="15 февр"
-          />
-          <pre>{data}</pre>
+          {mails.map((mail) => {
+            return (
+              <EmailRow
+                sender={mail.sender}
+                subject={mail.subject}
+                description={mail.description}
+                date={mail.date}
+                key={mail.sender + mail.date}
+              />
+            );
+          })}
         </div>
       </div>
     </div>

@@ -4,20 +4,31 @@ import React from 'react';
 import ClearIcon from '@material-ui/icons/Clear';
 import DeleteIcon from '@material-ui/icons/Delete';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-
-import '../styles/SendMail.css';
 import { IconButton } from '@material-ui/core';
 
-export interface SendMailProps {
-  hideSendMail?: (e: React.MouseEvent) => void;
-}
+// redux
+import { useDispatch } from 'react-redux';
+import { closeSendMail } from '../features/mailSlice';
 
-const SendMail = ({ hideSendMail }: SendMailProps) => {
+// styles
+import '../styles/SendMail.css';
+
+// export interface SendMailProps {
+//   hideSendMail?: (e: React.MouseEvent) => void;
+// }
+
+const SendMail = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="sendMail">
       <div className="sendMail__head">
         <p>Новое сообщение</p>
-        <button className="closeButton" type="button" onClick={hideSendMail}>
+        <button
+          className="closeButton"
+          type="button"
+          onClick={() => dispatch(closeSendMail())}
+        >
           <ClearIcon />
         </button>
       </div>

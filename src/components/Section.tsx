@@ -2,12 +2,12 @@ import React from 'react';
 
 import '../styles/EmailList.css';
 
-type SectionProps = {
+interface SectionProps {
   Icon: any;
   title: string;
   color: string;
   selected: boolean;
-};
+}
 
 const Section = ({ Icon, title, color, selected }: SectionProps) => {
   return (

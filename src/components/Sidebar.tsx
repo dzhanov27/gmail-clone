@@ -7,18 +7,30 @@ import SendIcon from '@material-ui/icons/Send';
 import WatchLaterIcon from '@material-ui/icons/WatchLater';
 import NoteIcon from '@material-ui/icons/Note';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+// redux
+import { useDispatch } from 'react-redux';
+import { openSendMail } from '../features/mailSlice';
+
 import SidebarOption from './SidebarOption';
 
+// styles
 import '../styles/Sidebar.css';
 
-export interface SidebarProps {
-  showSendMail?: (e: React.MouseEvent) => void;
-}
+// export interface SidebarProps {
+//   showSendMail?: (e: React.MouseEvent) => void;
+// }
 
-const Sidebar = ({ showSendMail }: SidebarProps) => {
+const Sidebar = () => {
+  const dispatch = useDispatch();
+
   return (
     <div className="sidebar">
-      <button type="button" className="newEmailBtn" onClick={showSendMail}>
+      <button
+        type="button"
+        className="newEmailBtn"
+        onClick={() => dispatch(openSendMail())}
+      >
         <img
           src="https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png"
           alt=""
