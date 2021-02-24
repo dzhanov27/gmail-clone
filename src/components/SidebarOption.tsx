@@ -2,20 +2,27 @@ import React from 'react';
 
 // import '../styles/Sidebar.css';
 
-type OptionProps = {
+export interface OptionProps {
   Icon: any;
   title: string;
   selected: boolean;
-  // number?: number;
-};
+  number?: number;
+}
 
-const SidebarOption = ({ Icon, title, selected }: OptionProps) => {
+// const defaultProps = {
+//   number: 0,
+// };
+
+const SidebarOption = ({ Icon, title, selected, number }: OptionProps) => {
   return (
     <div className={`sidebarOption ${selected && 'sidebar--active'}`}>
       <Icon />
       <p>{title}</p>
+      <span>{number && number}</span>
     </div>
   );
 };
+
+// SidebarOption.defaultProps = defaultProps;
 
 export default SidebarOption;

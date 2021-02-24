@@ -11,7 +11,7 @@
 
 .emailList__mailsBox {
   flex: 1;
-  overflow-y: scroll;
+  overflow: scroll;
   height: calc(100% - 58px);
 }
 
@@ -44,6 +44,7 @@
   border-bottom: 1px solid whitesmoke;
   font-size: 14px;
   cursor: pointer;
+  width: 100%;
 }
 
 .emailRow:hover {
@@ -57,23 +58,19 @@
 }
 
 .emailRow__sender {
-  padding-left: 8px;
   width: 180px;
+  padding-left: 8px;
 }
-
-/* .emailRow__message {
-  flex: 0.7;
-} */
 
 .emailRow__message > h3 {
   line-height: 14px;
   font-size: 14px;
   margin-right: 8px;
+  padding-right: 8px;
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  padding-right: 8px;
-  width: 500px;
+  width: 300px;
 }
 
 .emailRow__message > h3 > span {
@@ -82,7 +79,7 @@
 }
 
 .emailRow__date {
-  width: 50px;
+  width: 60px;
   margin-left: auto;
   margin-right: 16px;
 }

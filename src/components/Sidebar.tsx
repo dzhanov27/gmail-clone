@@ -11,10 +11,14 @@ import SidebarOption from './SidebarOption';
 
 import '../styles/Sidebar.css';
 
-const Sidebar: React.FC = () => {
+export interface SidebarProps {
+  showSendMail?: (e: React.MouseEvent) => void;
+}
+
+const Sidebar = ({ showSendMail }: SidebarProps) => {
   return (
     <div className="sidebar">
-      <button type="button" className="newEmailBtn">
+      <button type="button" className="newEmailBtn" onClick={showSendMail}>
         <img
           src="https://www.gstatic.com/images/icons/material/colored_icons/1x/create_32dp.png"
           alt=""
@@ -24,7 +28,7 @@ const Sidebar: React.FC = () => {
         </span>
       </button>
 
-      <SidebarOption Icon={InboxIcon} title="Входящие" selected />
+      <SidebarOption Icon={InboxIcon} title="Входящие" selected number={24} />
       <SidebarOption Icon={StarIcon} title="Помеченные" selected={false} />
       <SidebarOption
         Icon={WatchLaterIcon}

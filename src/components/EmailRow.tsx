@@ -5,13 +5,13 @@ import StarOutlineIcon from '@material-ui/icons/StarOutline';
 import { Checkbox, IconButton } from '@material-ui/core';
 // import { Link } from 'react-router-dom';
 
-type EmailProps = {
-  id: number;
+interface EmailProps {
+  id: string;
   sender: string;
   subject: string;
   description: string;
   date: string;
-};
+}
 
 const EmailRow = ({ id, sender, subject, description, date }: EmailProps) => {
   return (
@@ -33,7 +33,7 @@ const EmailRow = ({ id, sender, subject, description, date }: EmailProps) => {
           <span>{description}</span>
         </h3>
       </div>
-      <div className="emailRow__date">{date.slice(4, 10)}</div>
+      <div className="emailRow__date">{date}</div>
     </div>
   );
 };

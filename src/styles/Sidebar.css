@@ -46,6 +46,7 @@
 .sidebarOption > span {
   font-size: 0.85rem;
   margin-left: auto;
+  padding-right: 8px;
 }
 
 .sidebarOption:hover {
