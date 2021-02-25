@@ -9,9 +9,11 @@ import NoteIcon from '@material-ui/icons/Note';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 // redux
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { openSendMail } from '../features/mailSlice';
+import { selectMails } from '../features/mailsSlice';
 
+// components
 import SidebarOption from './SidebarOption';
 
 // styles
@@ -23,6 +25,7 @@ import '../styles/Sidebar.css';
 
 const Sidebar = () => {
   const dispatch = useDispatch();
+  const mails = useSelector(selectMails);
 
   return (
     <div className="sidebar">
@@ -40,7 +43,12 @@ const Sidebar = () => {
         </span>
       </button>
 
-      <SidebarOption Icon={InboxIcon} title="Входящие" selected number={24} />
+      <SidebarOption
+        Icon={InboxIcon}
+        title="Входящие"
+        selected
+        number={mails.length}
+      />
       <SidebarOption Icon={StarIcon} title="Помеченные" selected={false} />
       <SidebarOption
         Icon={WatchLaterIcon}

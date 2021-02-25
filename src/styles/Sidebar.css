@@ -36,6 +36,9 @@
   cursor: pointer;
   color: #555;
   font-size: 0.9rem;
+  border: none;
+  background-color: transparent;
+  text-align: start;
 }
 
 .sidebarOption > p {
@@ -46,17 +49,21 @@
 .sidebarOption > span {
   font-size: 0.85rem;
   margin-left: auto;
-  padding-right: 8px;
+  padding-right: 16px;
 }
 
 .sidebarOption:hover {
   background-color: whitesmoke;
 }
 
+.sidebarOption:focus {
+  outline: none;
+}
+
 .sidebar--active {
   color: #c04b37;
   background-color: #fcecec;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .sidebar--active:hover {

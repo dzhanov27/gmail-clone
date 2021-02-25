@@ -15,11 +15,14 @@ export interface OptionProps {
 
 const SidebarOption = ({ Icon, title, selected, number }: OptionProps) => {
   return (
-    <div className={`sidebarOption ${selected && 'sidebar--active'}`}>
+    <button
+      type="button"
+      className={`sidebarOption ${selected && 'sidebar--active'}`}
+    >
       <Icon />
       <p>{title}</p>
       <span>{number && number}</span>
-    </div>
+    </button>
   );
 };
 
