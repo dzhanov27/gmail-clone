@@ -104,7 +104,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  width: 320px;
+  width: 45vw;
 }
 
 .emailRow__message > h3 > span {

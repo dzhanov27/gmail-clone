@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // pages
 import AuthPage from './pages/AuthPage';
-import MainPage from './pages/MainPage';
+import MainPage from './pages/MailsPage';
 
 // styles
 import './styles/App.css';

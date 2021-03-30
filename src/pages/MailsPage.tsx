@@ -3,12 +3,12 @@ import { Route } from 'react-router-dom';
 
 // redux
 import { useSelector } from 'react-redux';
-import { selectSendMailIsOpen } from '../features/mailSlice';
+import { selectSendMailIsOpen } from '../features/mailPopupSlice';
 
 // components
-import EmailList from '../components/EmailList';
+import Mail from './MailPage';
+import EmailList from '../components/MailList';
 import Header from '../components/Header';
-import Mail from '../components/Mail';
 import SendMail from '../components/SendMail';
 import Sidebar from '../components/Sidebar';
 
@@ -21,7 +21,7 @@ const MainPage: React.FC = () => {
       <div className="app__body">
         <Sidebar />
         <Route path="/" exact component={EmailList} />
-        <Route path="/mail" component={Mail} />
+        <Route path="/mail/:id" component={Mail} />
         {sendMailIsOpen && <SendMail />}
       </div>
     </div>

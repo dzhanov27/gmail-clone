@@ -14,7 +14,7 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 
 // components
 import Section from './Section';
-import EmailRow from './EmailRow';
+import EmailRow from './MailRow';
 
 // redux
 import { loadMailsAsync, selectMails } from '../features/mailsSlice';
@@ -92,11 +92,13 @@ const EmailList: React.FC = () => {
           {mails.map((mail) => {
             return (
               <EmailRow
-                sender={mail.sender}
+                id={mail._id}
+                senderName={mail.senderName}
                 subject={mail.subject}
                 description={mail.description}
                 date={mail.date}
-                key={mail.sender + mail.date}
+                starred={mail.starred}
+                key={mail._id}
               />
             );
           })}

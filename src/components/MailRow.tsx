@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 
 // icons
@@ -8,34 +8,40 @@ import { Checkbox, IconButton } from '@material-ui/core';
 // import { Link } from 'react-router-dom';
 
 export interface EmailProps {
-  id?: string;
-  sender: string;
+  id: string;
+  senderName: string;
   subject: string;
   description: string;
   date: string;
+  starred: boolean;
 }
 
-const EmailRow = ({ id, sender, subject, description, date }: EmailProps) => {
-  const [starred, setStarred] = useState(true);
+const EmailRow = ({
+  id,
+  senderName,
+  subject,
+  description,
+  date,
+  starred,
+}: EmailProps) => {
   const history = useHistory();
 
   return (
     <div className="emailRow">
       <div className="emailRow__options">
         <Checkbox color="default" size="small" />
-        <IconButton size="small" onClick={() => setStarred(!starred)}>
-          {starred ? <StarOutlineIcon /> : <StarIcon />}
+        <IconButton size="small">
+          {starred ? <StarIcon /> : <StarOutlineIcon />}
         </IconButton>
       </div>
       <button
         type="button"
-        onClick={() => history.push('/mail')}
+        onClick={() => {
+          history.push(`/mail/${id}`);
+        }}
         className="clickButton"
       >
-        <div className="emailRow__sender">
-          {sender}
-          {id && id}
-        </div>
+        <div className="emailRow__sender">{senderName}</div>
 
         <div className="emailRow__message">
           <h3>

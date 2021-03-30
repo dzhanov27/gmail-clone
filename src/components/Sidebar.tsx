@@ -10,7 +10,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 // redux
 import { useDispatch, useSelector } from 'react-redux';
-import { openSendMail } from '../features/mailSlice';
+import { openSendMail } from '../features/mailPopupSlice';
 import { selectMails } from '../features/mailsSlice';
 
 // components

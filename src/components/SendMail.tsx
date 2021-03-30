@@ -8,7 +8,7 @@ import { IconButton } from '@material-ui/core';
 
 // redux
 import { useDispatch } from 'react-redux';
-import { closeSendMail } from '../features/mailSlice';
+import { closeSendMail } from '../features/mailPopupSlice';
 
 // styles
 import '../styles/SendMail.css';

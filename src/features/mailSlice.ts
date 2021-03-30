@@ -1,26 +1,71 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 
-// interface mail
+import { MailSliceState, MailState } from '../type';
+import { mailsService } from '../services/mails.service';
+
+const mailInitialState: MailState = {
+  data: {
+    _id: '',
+    senderEmail: '',
+    senderName: '',
+    recipientEmail: '',
+    recipientName: '',
+    starred: false,
+    category: '',
+    sender: '',
+    subject: '',
+    description: '',
+    date: '',
+    __v: 0,
+  },
+};
 
 export const mailSlice = createSlice({
   name: 'mail',
-  initialState: {
-    sendMailIsOpen: false,
-  },
+  initialState: mailInitialState,
   reducers: {
-    openSendMail: (state) => {
-      state.sendMailIsOpen = true;
+    loadMail: (state, action) => {
+      return {
+        ...state,
+        data: action.payload,
+      };
     },
-    closeSendMail: (state) => {
-      state.sendMailIsOpen = false;
+    clearMail: (state) => {
+      state.data = {
+        _id: '',
+        senderEmail: '',
+        senderName: '',
+        recipientEmail: '',
+        recipientName: '',
+        starred: false,
+        category: '',
+        sender: '',
+        subject: '',
+        description: '',
+        date: '',
+        __v: 0,
+      };
     },
   },
 });
 
-export const { openSendMail, closeSendMail } = mailSlice.actions;
+export const { loadMail, clearMail } = mailSlice.actions;
 
-export const selectSendMailIsOpen = (state: {
-  mail: { sendMailIsOpen: boolean };
-}) => state.mail.sendMailIsOpen;
+export const loadMailAsync = (id: string) => (
+  dispatch: ThunkDispatch<{}, {}, AnyAction>
+) => {
+  mailsService
+    .loadOne(id)
+    .then((data) => {
+      dispatch(loadMail(data));
+    })
+    .catch(() => {
+      throw new Error('Something went wrong');
+    });
+};
+
+export const selectMail = (state: MailSliceState) => state.mail.data;
 
 export default mailSlice.reducer;

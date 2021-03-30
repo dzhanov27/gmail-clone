@@ -31,4 +31,5 @@
 
 .mail__articleMessage {
   padding: 16px 8px 16px 64px;
+  width: 65vw;
 }

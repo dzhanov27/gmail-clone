@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 
-import { MailsState, State } from '../type';
+import { MailsSliceState, MailsState } from '../type';
 import { mailsService } from '../services/mails.service';
 
 const mailsInitialState: MailsState = {
@@ -37,6 +37,6 @@ export const loadMailsAsync = () => (
     });
 };
 
-export const selectMails = (state: State) => state.mails.data;
+export const selectMails = (state: MailsSliceState) => state.mails.data;
 
 export default mailsSlice.reducer;

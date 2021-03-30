@@ -20,6 +20,7 @@
 }
 
 .header__middle {
+  min-width: 450px;
   display: flex;
   flex: 0.7;
   align-items: center;

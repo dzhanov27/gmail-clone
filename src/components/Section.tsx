@@ -14,8 +14,8 @@ const Section = ({ Icon, title, color, selected }: SectionProps) => {
     <div
       className={`section ${selected && 'section--selected'}`}
       style={{
-        borderBottom: `${selected && `3px solid ${color}`}`,
-        color: `${selected && color}`,
+        borderBottom: `${selected ? `3px solid ${color}` : 'none'}`,
+        color: `${selected ? color : ''}`,
       }}
     >
       <Icon />
