@@ -14,10 +14,14 @@ import LocalOfferIcon from '@material-ui/icons/LocalOffer';
 
 // components
 import Section from './Section';
-import EmailRow from './MailRow';
+import MailRow from './MailRow';
 
 // redux
-import { loadMailsAsync, selectMails } from '../features/mailsSlice';
+import {
+  loadMailsAsync,
+  selectMails,
+  setMailsNumber,
+} from '../features/mailsSlice';
 import {
   openPromo,
   openSocial,
@@ -28,14 +32,35 @@ import {
 // styles
 import '../styles/EmailList.css';
 
-const EmailList: React.FC = () => {
+const MailList: React.FC = () => {
   const mails = useSelector(selectMails);
   const section = useSelector(selectSectionType);
   const dispatch = useDispatch();
 
+  const loadMailsBySection = () => {
+    switch (section) {
+      case 'red':
+        dispatch(loadMailsAsync('regular'));
+        break;
+      case 'blue':
+        dispatch(loadMailsAsync('social'));
+        break;
+      case 'green':
+        dispatch(loadMailsAsync('promo'));
+        break;
+      default:
+        dispatch(loadMailsAsync('regular'));
+        break;
+    }
+  };
+
   useEffect(() => {
-    dispatch(loadMailsAsync());
+    loadMailsBySection();
   }, []);
+
+  useEffect(() => {
+    dispatch(setMailsNumber(mails));
+  }, [mails]);
 
   return (
     <div className="emailList">
@@ -45,7 +70,7 @@ const EmailList: React.FC = () => {
           <IconButton size="small">
             <ExpandMoreIcon />
           </IconButton>
-          <IconButton onClick={() => dispatch(loadMailsAsync())}>
+          <IconButton onClick={() => loadMailsBySection()}>
             <RefreshIcon />
           </IconButton>
           <IconButton>
@@ -63,35 +88,53 @@ const EmailList: React.FC = () => {
       </div>
       <div className="emailList__mailsBox">
         <div className="emailList__sections">
-          <button type="button" onClick={() => dispatch(openUnsorted())}>
+          <button
+            type="button"
+            onClick={() => {
+              dispatch(openUnsorted());
+              dispatch(loadMailsAsync('regular'));
+            }}
+          >
             <Section
               Icon={InboxIcon}
               title="Несортированные"
               color="red"
-              selected={section.red}
+              selected={section === 'red'}
             />
           </button>
-          <button type="button" onClick={() => dispatch(openSocial())}>
+          <button
+            type="button"
+            onClick={() => {
+              dispatch(openSocial());
+              dispatch(loadMailsAsync('social'));
+            }}
+          >
             <Section
               Icon={PeopleIcon}
               title="Соцсети"
               color="blue"
-              selected={section.blue}
+              selected={section === 'blue'}
             />
           </button>
-          <button type="button" onClick={() => dispatch(openPromo())}>
+          <button
+            type="button"
+            onClick={() => {
+              dispatch(openPromo());
+              dispatch(loadMailsAsync('promo'));
+            }}
+          >
             <Section
               Icon={LocalOfferIcon}
               title="Промоакции"
               color="green"
-              selected={section.green}
+              selected={section === 'green'}
             />
           </button>
         </div>
         <div className="emailList__mails">
           {mails.map((mail) => {
             return (
-              <EmailRow
+              <MailRow
                 id={mail._id}
                 senderName={mail.senderName}
                 subject={mail.subject}
@@ -108,4 +151,4 @@ const EmailList: React.FC = () => {
   );
 };
 
-export default EmailList;
+export default MailList;

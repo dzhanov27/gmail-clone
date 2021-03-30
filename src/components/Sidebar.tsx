@@ -1,4 +1,5 @@
 import React from 'react';
+import { useHistory } from 'react-router-dom';
 
 // icons
 import InboxIcon from '@material-ui/icons/Inbox';
@@ -11,7 +12,11 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // redux
 import { useDispatch, useSelector } from 'react-redux';
 import { openSendMail } from '../features/mailPopupSlice';
-import { selectMails } from '../features/mailsSlice';
+import {
+  // selectMails,
+  selectMailsNumber,
+  // setMailsNumber,
+} from '../features/mailsSlice';
 
 // components
 import SidebarOption from './SidebarOption';
@@ -19,13 +24,18 @@ import SidebarOption from './SidebarOption';
 // styles
 import '../styles/Sidebar.css';
 
-// export interface SidebarProps {
-//   showSendMail?: (e: React.MouseEvent) => void;
-// }
-
 const Sidebar = () => {
   const dispatch = useDispatch();
-  const mails = useSelector(selectMails);
+  const mailsNumber = useSelector(selectMailsNumber);
+  const history = useHistory();
+
+  const indexHandle = () => {
+    history.push('/');
+  };
+
+  const starredHandle = () => {
+    history.push('/starred');
+  };
 
   return (
     <div className="sidebar">
@@ -47,9 +57,15 @@ const Sidebar = () => {
         Icon={InboxIcon}
         title="Входящие"
         selected
-        number={mails.length}
+        number={mailsNumber}
+        handle={indexHandle}
       />
-      <SidebarOption Icon={StarIcon} title="Помеченные" selected={false} />
+      <SidebarOption
+        Icon={StarIcon}
+        title="Помеченные"
+        selected={false}
+        handle={starredHandle}
+      />
       <SidebarOption
         Icon={WatchLaterIcon}
         title="Отложенные"

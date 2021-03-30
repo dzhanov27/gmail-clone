@@ -97,14 +97,15 @@
 }
 
 .emailRow__message > h3 {
-  line-height: 16px;
-  font-size: 14px;
+  width: 45vw;
   margin-right: 8px;
   padding-right: 8px;
   text-overflow: ellipsis;
-  white-space: nowrap;
   overflow: hidden;
-  width: 45vw;
+  white-space: nowrap;
+  text-align: left;
+  line-height: 16px;
+  font-size: 14px;
 }
 
 .emailRow__message > h3 > span {

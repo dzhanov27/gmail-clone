@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 
 // pages
 import AuthPage from './pages/AuthPage';
-import MainPage from './pages/MailsPage';
+import MailsPage from './pages/MailsPage';
 
 // styles
 import './styles/App.css';
@@ -13,7 +13,7 @@ const App: React.FC = () => {
     <Router>
       <Switch>
         <Route path="/login" component={AuthPage} />
-        <Route path="/" component={MainPage} />
+        <Route path="/" component={MailsPage} />
       </Switch>
     </Router>
   );

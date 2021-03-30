@@ -7,10 +7,11 @@ import { selectSendMailIsOpen } from '../features/mailPopupSlice';
 
 // components
 import Mail from './MailPage';
-import EmailList from '../components/MailList';
+import MailList from '../components/MailList';
 import Header from '../components/Header';
 import SendMail from '../components/SendMail';
 import Sidebar from '../components/Sidebar';
+import List from '../components/List';
 
 const MainPage: React.FC = () => {
   const sendMailIsOpen = useSelector(selectSendMailIsOpen);
@@ -20,7 +21,8 @@ const MainPage: React.FC = () => {
       <Header />
       <div className="app__body">
         <Sidebar />
-        <Route path="/" exact component={EmailList} />
+        <Route path="/" exact component={MailList} />
+        <Route path="/starred" component={List} />
         <Route path="/mail/:id" component={Mail} />
         {sendMailIsOpen && <SendMail />}
       </div>

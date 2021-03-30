@@ -1,41 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-interface Section {
-  red: boolean;
-  blue: boolean;
-  green: boolean;
-}
+// interface Section {
+//   red: boolean;
+//   blue: boolean;
+//   green: boolean;
+// }
 
 export const sectionSlice = createSlice({
   name: 'section',
   initialState: {
-    sectionType: {
-      red: true,
-      blue: false,
-      green: false,
-    },
+    sectionType: 'red',
   },
   reducers: {
     openUnsorted: (state) => {
-      state.sectionType = {
-        red: true,
-        blue: false,
-        green: false,
-      };
+      state.sectionType = 'red';
     },
     openSocial: (state) => {
-      state.sectionType = {
-        red: false,
-        blue: true,
-        green: false,
-      };
+      state.sectionType = 'blue';
     },
     openPromo: (state) => {
-      state.sectionType = {
-        red: false,
-        blue: false,
-        green: true,
-      };
+      state.sectionType = 'green';
     },
   },
 });
@@ -43,7 +27,7 @@ export const sectionSlice = createSlice({
 export const { openUnsorted, openSocial, openPromo } = sectionSlice.actions;
 
 export const selectSectionType = (state: {
-  section: { sectionType: Section };
+  section: { sectionType: string };
 }) => state.section.sectionType;
 
 export default sectionSlice.reducer;

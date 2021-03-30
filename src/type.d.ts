@@ -15,6 +15,7 @@ export interface Mail {
 
 export interface MailsState {
   data: Mail[];
+  mailsNumber: number;
 }
 
 export interface MailState {
